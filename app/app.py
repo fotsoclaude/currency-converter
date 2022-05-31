@@ -9,6 +9,7 @@ class App(QtWidgets.QWidget):
         self.setWindowTitle("Convertisseur de devises")
         self.setup_ui()
         self.set_default_values()
+        self.setup_connections()
         
     def setup_ui(self):
         #Orientation horizontale du layout
@@ -41,9 +42,20 @@ class App(QtWidgets.QWidget):
         self.spn_montant.setValue(100)
         self.spn_montantConverti.setValue(100)
        
+    def setup_connections(self):
+        self.cbb_devisesFrom.activated.connect(self.compute)
+        self.cbb_devisesTo.activated.connect(self.compute)
+        self.spn_montant.valueChanged.connect(self.compute)
+        self.btn_inverser.clicked.connect(self.inverser_devise)
     
+    def compute(self):
+        print("Compute")
+        
     
-
+    def  inverser_devise(self):
+        print("Inverser devise")
+        
+        
 # création d'une application. Toujours passer une liste vide, si non on a une erreur*
 app = QtWidgets.QApplication([])
 
